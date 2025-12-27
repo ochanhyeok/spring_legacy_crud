@@ -24,16 +24,17 @@
         <constructor-arg ref="hikariConfig" />
     </bean>
 
-    <!-- SqlSessionFactory: MyBatis 설정 -->
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
-<!--        <property name="mapperLocations" value="classpath:mapper/**/*.xml" />-->
-        <property name="typeAliasesPackage" value="org.crud_ex.domain" />
-    </bean>
-
     <!-- SqlSessionTemplate: MyBatis 실행 -->
     <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
         <constructor-arg ref="sqlSessionFactory" />
     </bean>
+
+    <!-- SqlSessionFactory: MyBatis 설정 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="configLocation" value="classpath:mybatis-config.xml" />
+        <property name="typeAliasesPackage" value="org.crud_ex.domain" />
+    </bean>
+
 
 </beans>

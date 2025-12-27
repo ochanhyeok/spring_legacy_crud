@@ -7,8 +7,8 @@ import lombok.Data;
 @Data
 public class Reply {
 
-	private Long rno;
-	private Long bno;
+	private Long replyId;
+	private Long boardId;
 	private String reply;
 	private String replyer;
 	private LocalDateTime regDate;
