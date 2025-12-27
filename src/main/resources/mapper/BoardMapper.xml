@@ -9,7 +9,7 @@
         ORDER BY board_id DESC
     </select>
 
-    <!-- 단건 조회 -->
+    <!-- 한 건 조회 -->
     <select id="findOne" resultType="Board">
         SELECT * FROM board
         WHERE board_id = #{boardId}
@@ -37,7 +37,7 @@
 
     <!-- 총 개수 -->
     <select id="getTotalCount" resultType="int">
-        SELECT COUNT(* FROM board
+        SELECT COUNT(*) FROM board
     </select>
 
 

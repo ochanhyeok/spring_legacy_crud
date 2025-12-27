@@ -9,7 +9,7 @@ public class Reply {
 
 	private Long replyId;
 	private Long boardId;
-	private String reply;
+	private String content;
 	private String replyer;
 	private LocalDateTime regDate;
 
