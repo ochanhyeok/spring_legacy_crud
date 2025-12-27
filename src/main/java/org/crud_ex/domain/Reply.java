@@ -7,8 +7,8 @@ import lombok.Data;
 @Data
 public class Reply {
 
-	private int rno;
-	private int bno;
+	private Long rno;
+	private Long bno;
 	private String reply;
 	private String replyer;
 	private LocalDateTime regDate;
