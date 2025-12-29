@@ -7,7 +7,7 @@ import org.crud_ex.domain.Reply;
 public interface ReplyMapper {
 
 	// 특정 게시글의 댓글 목록 조회
-	List<Reply> findAll(Long boardId);
+	List<Reply> findByBoardId(Long boardId);
 
 	// 내가 작성한 댓글 조회
 	List<Reply> findByReplyer(String replyer);

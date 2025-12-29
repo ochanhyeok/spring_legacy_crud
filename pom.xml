@@ -114,11 +114,11 @@
 
 
         <!-- test code -->
-        <!-- JUnit 4 -->
+        <!-- JUnit5 의존성 -->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13.2</version>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.9.3</version>
             <scope>test</scope>
         </dependency>
 
@@ -129,6 +129,15 @@
             <version>${org.springframework-version}</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- AssertJ -->
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.24.2</version>
+            <scope>test</scope>
+        </dependency>
+
 
     </dependencies>
 

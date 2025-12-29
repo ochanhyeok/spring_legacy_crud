@@ -6,4 +6,11 @@
         <!-- board_id → boardId 자동 매핑 -->
         <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
+
+    <!--&lt;!&ndash; Mapper XML 위치 지정 &ndash;&gt;
+    <mappers>
+        <mapper resource="mapper/BoardMapper.xml"/>
+        <mapper resource="mapper/ReplyMapper.xml"/>
+        <mapper resource="mapper/MemberMapper.xml"/>
+    </mappers>-->
 </configuration>

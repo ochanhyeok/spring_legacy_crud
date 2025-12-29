@@ -16,7 +16,7 @@ public class ReplyServiceImpl implements ReplyService {
 
 	@Override
 	public List<Reply> getReplyList(Long boardId) {
-		return replyMapper.findAll(boardId);
+		return replyMapper.findByBoardId(boardId);
 	}
 
 	@Override
