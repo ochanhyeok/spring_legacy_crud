@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/replies")
-@Log4j
+@Slf4j
 public class ReplyController {
 
 	private final ReplyService replyService;
@@ -30,18 +30,21 @@ public class ReplyController {
 	// 댓글 목록 조회
 	@GetMapping("/board/{boardId}")
 	public ResponseEntity<List<Reply>> getList(@PathVariable("boardId") Long boardId) {
+		log.info("getList boardId:" + boardId);
 		return new ResponseEntity<>(replyService.getReplyList(boardId), HttpStatus.OK);
 	}
 
 	// 댓글 단건 조회
 	@GetMapping("/{replyId}")
 	public ResponseEntity<Reply> get(@PathVariable("replyId") Long replyId) {
+		log.info("get replyId: " + replyId);
 		return new ResponseEntity<>(replyService.getReply(replyId), HttpStatus.OK);
 	}
 
 	// 댓글 등록
 	@PostMapping("")
 	public ResponseEntity<String> register(@RequestBody Reply reply) {
+		log.info("register reply: " + reply);
 		replyService.register(reply);
 		return new ResponseEntity<>("success", HttpStatus.OK);
 	}
@@ -49,6 +52,7 @@ public class ReplyController {
 	// 댓글 수정
 	@PutMapping("/{replyId}")
 	public ResponseEntity<String> modify(@RequestParam("replyId") Long replyId, @RequestBody Reply reply) {
+		log.info("modify replyId: " + replyId);
 		reply.setReplyId(replyId);
 		return replyService.modify(reply) ? new ResponseEntity<>("success", HttpStatus.OK) :
 			new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -57,6 +61,7 @@ public class ReplyController {
 	// 댓글 삭제
 	@DeleteMapping("/{replyId}")
 	public ResponseEntity<String> remove(@PathVariable("replyId") Long replyId) {
+		log.info("remove replyId: " + replyId);
 		return replyService.remove(replyId) ? new ResponseEntity<>("success", HttpStatus.OK) :
 			new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
