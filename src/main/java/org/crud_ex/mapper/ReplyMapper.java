@@ -2,7 +2,6 @@ package org.crud_ex.mapper;
 
 import java.util.List;
 
-import org.crud_ex.domain.Board;
 import org.crud_ex.domain.Reply;
 
 public interface ReplyMapper {
@@ -11,7 +10,7 @@ public interface ReplyMapper {
 	List<Reply> findAll(Long boardId);
 
 	// 내가 작성한 댓글 조회
-	List<Board> findByReplyer(String replyer);
+	List<Reply> findByReplyer(String replyer);
 
 	// 댓글 한 건 조회 (수정/삭제 전 확인용)
 	Reply findOne(Long replyId);
