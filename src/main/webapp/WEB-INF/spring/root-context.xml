@@ -11,6 +11,7 @@
     <context:component-scan base-package="org.crud_ex.service" />
     <context:property-placeholder location="classpath:db.properties" />
 
+
     <!-- HikariCP 설정 -->
     <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
         <property name="driverClassName" value="${db.driver}" />
@@ -24,10 +25,10 @@
         <constructor-arg ref="hikariConfig" />
     </bean>
 
-    <!-- SqlSessionTemplate: MyBatis 실행 -->
-    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
-        <constructor-arg ref="sqlSessionFactory" />
-    </bean>
+<!--    &lt;!&ndash; SqlSessionTemplate: MyBatis 실행 &ndash;&gt;-->
+<!--    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">-->
+<!--        <constructor-arg ref="sqlSessionFactory" />-->
+<!--    </bean>-->
 
     <!-- SqlSessionFactory: MyBatis 설정 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
