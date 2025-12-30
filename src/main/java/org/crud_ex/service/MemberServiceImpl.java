@@ -1,6 +1,7 @@
 package org.crud_ex.service;
 
 import org.crud_ex.domain.Member;
+import org.crud_ex.exception.LoginFailedException;
 import org.crud_ex.mapper.MemberMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -54,13 +55,13 @@ public class MemberServiceImpl implements MemberService {
 		// 아이디 존재 여부 확인
 		if (member == null) {
 			log.warn("로그인 실패: 존재하지 않는 아이디 - userId={}", userId);
-			return null;
+			throw new LoginFailedException("존재하지 않는 아이디입니다.");
 		}
 
 		// 비밀번호 확인
 		if (!member.getUserPw().equals(userPw)) {
 			log.warn("로그인 실패: 비밀번호 불일치 - userId={}", userId);
-			return null;
+			throw new LoginFailedException("비밀번호가 일치하지 않습니다.");
 		}
 
 		// 로그인 성공
