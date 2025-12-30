@@ -217,5 +217,3 @@
         </nav>
     </div>
 </header>
-
-<main>
