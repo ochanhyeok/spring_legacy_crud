@@ -13,7 +13,7 @@ public interface BoardService {
 	Board getBoard(Long boardId);
 
 	// 등록
-	void register(Board board);
+	Long register(Board board);
 
 	// 수정
 	boolean modify(Board board);

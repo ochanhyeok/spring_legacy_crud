@@ -3,6 +3,7 @@ package org.crud_ex.controller;
 import javax.servlet.http.HttpSession;
 
 import org.crud_ex.domain.Member;
+import org.crud_ex.exception.DuplicateUserException;
 import org.crud_ex.exception.LoginFailedException;
 import org.crud_ex.service.MemberService;
 import org.springframework.stereotype.Controller;
@@ -36,9 +37,16 @@ public class MemberController {
 	@PostMapping("/register")
 	public String register(Member member, RedirectAttributes redirectAttributes) {
 		log.info("member register:{}", member);
-		memberService.register(member);
-		redirectAttributes.addFlashAttribute("result", "success");
-		return "redirect:/member/login";
+
+		try {
+			memberService.register(member);
+			redirectAttributes.addFlashAttribute("result", "success");
+			return "redirect:/member/login";
+		} catch (DuplicateUserException e) {
+			log.warn("회원가입 실패:{}", e.getMessage());
+			redirectAttributes.addFlashAttribute("error", e.getMessage());
+			return "redirect:/member/register";
+		}
 	}
 
 	// 아이디 중복 체크 (AJAX)

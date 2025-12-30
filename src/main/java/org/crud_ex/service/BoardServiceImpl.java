@@ -29,8 +29,9 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void register(Board board) {
+	public Long register(Board board) {
 		boardMapper.save(board);
+		return board.getBoardId();
 	}
 
 	@Override

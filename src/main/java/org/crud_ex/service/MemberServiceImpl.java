@@ -4,6 +4,7 @@ import org.crud_ex.domain.Member;
 import org.crud_ex.exception.DuplicateUserException;
 import org.crud_ex.exception.LoginFailedException;
 import org.crud_ex.mapper.MemberMapper;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 public class MemberServiceImpl implements MemberService {
 
 	private final MemberMapper memberMapper;
+	private final PasswordEncoder passwordEncoder;
 
 	@Override
 	@Transactional(readOnly = true)
@@ -30,11 +32,20 @@ public class MemberServiceImpl implements MemberService {
 			throw new DuplicateUserException("이미 존재하는 아이디입니다.");
 		}
 
+		// 비밀번호 암호화
+		String encodePassword = passwordEncoder.encode(member.getUserPw());
+		member.setUserPw(encodePassword);
+
+		log.info("회원가입: userId{}, 암호화된 비밀번호 길이={}", member.getUserId(), encodePassword.length());
 		memberMapper.save(member);
 	}
 
 	@Override
 	public boolean modify(Member member) {
+		// 비밀번호 수정 시에도 암호화
+		String encodePassword = passwordEncoder.encode(member.getUserPw());
+		member.setUserPw(encodePassword);
+
 		return memberMapper.update(member) == 1;
 	}
 
@@ -64,7 +75,7 @@ public class MemberServiceImpl implements MemberService {
 		}
 
 		// 비밀번호 확인
-		if (!member.getUserPw().equals(userPw)) {
+		if (!passwordEncoder.matches(userPw, member.getUserPw())) {
 			log.warn("로그인 실패: 비밀번호 불일치 - userId={}", userId);
 			throw new LoginFailedException("비밀번호가 일치하지 않습니다.");
 		}

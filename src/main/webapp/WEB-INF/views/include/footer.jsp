@@ -1,16 +1,7 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: ochanhyeog
-  Date: 2025. 12. 29.
-  Time: 오후 12:11
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
-
+</div> <!-- container 닫기 -->
+<footer style="background: #333; color: white; text-align: center; padding: 20px 0; margin-top: 40px;">
+    <p>&copy; 2025 CRUD 게시판. All rights reserved.</p>
+</footer>
 </body>
 </html>

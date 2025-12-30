@@ -17,6 +17,8 @@
     <context:component-scan base-package="org.crud_ex.service" />
     <context:property-placeholder location="classpath:db.properties" />
 
+    <!-- PasswordEncoder 빈 등록 -->
+    <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 
     <!-- HikariCP 설정 -->
     <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
@@ -45,12 +47,12 @@
     <mybatis-spring:scan base-package="org.crud_ex.mapper"
                          annotation="org.apache.ibatis.annotations.Mapper" />
 
-    <!-- ⭐ 추가: TransactionManager -->
+    <!-- TransactionManager -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource" />
     </bean>
 
-    <!-- ⭐ 추가: @Transactional 활성화 -->
+    <!-- @Transactional 활성화 -->
     <tx:annotation-driven transaction-manager="transactionManager" />
 
 </beans>

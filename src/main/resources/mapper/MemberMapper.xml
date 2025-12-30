@@ -21,7 +21,7 @@
         SET user_pw = #{userPw},
             user_name = #{userName},
             email = #{email}
-        WHERE uesr_id = {userId}
+        WHERE uesr_id = #{userId}
     </update>
 
     <!-- 회원 탈퇴 -->

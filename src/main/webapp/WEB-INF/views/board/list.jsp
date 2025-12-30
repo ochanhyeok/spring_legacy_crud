@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="../include/header.jsp" %>
 
 <h2>게시판 목록</h2>
@@ -36,8 +35,12 @@
                 </a>
             </td>
             <td>${board.writer}</td>
-            <td><fmt:formatDate value="${board.regDate}" pattern="yyyy-MM-dd HH:mm" /></td>
-            <td>${board.viewCnt}</td>
+            <td>
+                    <%-- ⭐ LocalDateTime 포맷 수정 --%>
+                <c:set var="dateStr" value="${board.regDate.toString()}" />
+                    ${dateStr.substring(0, 10)} ${dateStr.substring(11, 16)}
+            </td>
+            <td>${board.viewCnt != null ? board.viewCnt : 0}</td>
         </tr>
     </c:forEach>
     </tbody>

@@ -24,7 +24,6 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @RequestMapping("/replies")
 @Slf4j
-@Builder
 public class ReplyController {
 
 	private final ReplyService replyService;
@@ -53,7 +52,7 @@ public class ReplyController {
 
 	// 댓글 수정
 	@PutMapping("/{replyId}")
-	public ResponseEntity<String> modify(@RequestParam("replyId") Long replyId, @RequestBody Reply reply) {
+	public ResponseEntity<String> modify(@PathVariable("replyId") Long replyId, @RequestBody Reply reply) {
 		log.info("modify replyId:{}", replyId);
 		reply.setReplyId(replyId);
 		return replyService.modify(reply) ? new ResponseEntity<>("success", HttpStatus.OK) :

@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="../include/header.jsp" %>
 
 <h2>게시글 수정</h2>
@@ -31,11 +30,24 @@
         </tr>
         <tr>
             <th>작성일</th>
-            <td><fmt:formatDate value="${board.regDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+            <td>
+                <%-- ⭐ LocalDateTime 포맷 수정 --%>
+                <c:set var="regDateStr" value="${board.regDate.toString()}" />
+                ${regDateStr.substring(0, 10)} ${regDateStr.substring(11, 19)}
+            </td>
         </tr>
         <tr>
             <th>수정일</th>
-            <td><fmt:formatDate value="${board.updateDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+            <td>
+                <%-- ⭐ LocalDateTime 포맷 수정 --%>
+                <c:if test="${board.updateDate != null}">
+                    <c:set var="updateDateStr" value="${board.updateDate.toString()}" />
+                    ${updateDateStr.substring(0, 10)} ${updateDateStr.substring(11, 19)}
+                </c:if>
+                <c:if test="${board.updateDate == null}">
+                    -
+                </c:if>
+            </td>
         </tr>
     </table>
 
