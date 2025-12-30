@@ -3,6 +3,7 @@ package org.crud_ex.controller;
 import javax.servlet.http.HttpSession;
 
 import org.crud_ex.domain.Member;
+import org.crud_ex.exception.LoginFailedException;
 import org.crud_ex.service.MemberService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -62,17 +63,20 @@ public class MemberController {
 		HttpSession session, RedirectAttributes redirectAttributes) {
 		log.info("로그인 요청: userId={}", userId);
 
-		Member member = memberService.login(userId, userPw);
+		try {
+			Member member = memberService.login(userId, userPw);
 
-		if (member == null) {
-			redirectAttributes.addFlashAttribute("error", "아이디 또는 비밀번호가 일치하지 않습니다.");
+			// 로그인 성공
+			session.setAttribute("loginUser", member);
+			log.info("로그인 성공, 세션 저장 완료: userId={}", userId);
+			return "redirect:/board/list";
+		} catch (LoginFailedException e) {
+			log.warn("로그인 실패:{}", e.getMessage());
+			redirectAttributes.addFlashAttribute("error", e.getMessage());
 			return "redirect:/member/login";
 		}
 
-		session.setAttribute("loginUser", member);
-		log.info("로그인 성공, 세션 저장 완료: userId={}", userId);
 
-		return "redirect:/board/list";
 	}
 
 	// 로그아웃

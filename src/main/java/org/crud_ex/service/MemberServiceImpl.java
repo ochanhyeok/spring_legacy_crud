@@ -1,6 +1,7 @@
 package org.crud_ex.service;
 
 import org.crud_ex.domain.Member;
+import org.crud_ex.exception.DuplicateUserException;
 import org.crud_ex.exception.LoginFailedException;
 import org.crud_ex.mapper.MemberMapper;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,10 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public void register(Member member) {
+		if (checkDuplicate(member.getUserId())) {
+			throw new DuplicateUserException("이미 존재하는 아이디입니다.");
+		}
+
 		memberMapper.save(member);
 	}
 
