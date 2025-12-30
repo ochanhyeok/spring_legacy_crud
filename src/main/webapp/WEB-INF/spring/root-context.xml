@@ -31,11 +31,6 @@
         <constructor-arg ref="hikariConfig" />
     </bean>
 
-<!--    &lt;!&ndash; SqlSessionTemplate: MyBatis 실행 &ndash;&gt;-->
-<!--    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">-->
-<!--        <constructor-arg ref="sqlSessionFactory" />-->
-<!--    </bean>-->
-
     <!-- SqlSessionFactory: MyBatis 설정 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
@@ -45,8 +40,10 @@
         <property name="mapperLocations" value="classpath:mapper/**/*.xml" />
     </bean>
 
-    <!-- Mapper 스캔 -->
-    <mybatis-spring:scan base-package="org.crud_ex.mapper" />
+    <!-- root-context.xml -->
+    <!-- @Mapper 어노테이션 사용하면 추가해야 함 -->
+    <mybatis-spring:scan base-package="org.crud_ex.mapper"
+                         annotation="org.apache.ibatis.annotations.Mapper" />
 
     <!-- ⭐ 추가: TransactionManager -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

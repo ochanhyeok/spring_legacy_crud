@@ -1,7 +1,9 @@
 package org.crud_ex.mapper;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.crud_ex.domain.Member;
 
+@Mapper
 public interface MemberMapper {
 
 	// 회원 조회 (로그인용)

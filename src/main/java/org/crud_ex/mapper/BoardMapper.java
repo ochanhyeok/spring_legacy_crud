@@ -2,8 +2,10 @@ package org.crud_ex.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.crud_ex.domain.Board;
 
+@Mapper
 public interface BoardMapper {
 
 	// 목록 조회
