@@ -35,7 +35,7 @@ public class MemberController {
 	// 회원가입 처리
 	@PostMapping("/register")
 	public String register(Member member, RedirectAttributes redirectAttributes) {
-		log.info("member register: " + member);
+		log.info("member register:{}", member);
 		memberService.register(member);
 		redirectAttributes.addFlashAttribute("result", "success");
 		return "redirect:/member/login";
@@ -45,7 +45,7 @@ public class MemberController {
 	@GetMapping("/checkId")
 	@ResponseBody
 	public String checkId(@RequestParam("userId") String userId) {
-		log.info("check userId: " + userId);
+		log.info("check userId:{}", userId);
 		boolean isDuplicate = memberService.checkDuplicate(userId);
 		return isDuplicate ? "duplicate" : "available";
 	}
@@ -75,8 +75,6 @@ public class MemberController {
 			redirectAttributes.addFlashAttribute("error", e.getMessage());
 			return "redirect:/member/login";
 		}
-
-
 	}
 
 	// 로그아웃
@@ -118,7 +116,7 @@ public class MemberController {
 	// 회원정보 수정 처리
 	@PostMapping("/modify")
 	public String modify(Member member, HttpSession session, RedirectAttributes redirectAttributes) {
-		log.info("member modify: " + member);
+		log.info("member modify:{}", member);
 		if (memberService.modify(member)) {
 			// 세션 정보 업데이트
 			session.setAttribute("loginUser", memberService.getMember(member.getUserId()));

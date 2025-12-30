@@ -39,7 +39,7 @@ public class BoardController {
 	// 등록 처리
 	@PostMapping("/register")
 	public String register(Board board, RedirectAttributes redirectAttributes) {
-		log.info("board register: " + board);
+		log.info("board register:{}", board);
 		boardService.register(board);
 		redirectAttributes.addFlashAttribute("result", board.getBoardId());
 		return "redirect:/board/list";
@@ -48,7 +48,7 @@ public class BoardController {
 	// 상세 조회
 	@GetMapping("/get")
 	public String get(@RequestParam("boardId") Long boardId, Model model) {
-		log.info("board get: " + boardId);
+		log.info("board get:{}", boardId);
 		model.addAttribute("board", boardService.getBoard(boardId));
 		return "board/get";
 	}
@@ -56,7 +56,7 @@ public class BoardController {
 	// 수정 페이지
 	@GetMapping("/modify")
 	public String modifyForm(@RequestParam("boardId") Long boardId, Model model) {
-		log.info("board modify form: " + boardId);
+		log.info("board modify form:{}", boardId);
 		model.addAttribute("board", boardService.getBoard(boardId));
 		return "board/modify";
 	}
@@ -64,7 +64,7 @@ public class BoardController {
 	// 수정 처리
 	@PostMapping("/modify")
 	public String modify(Board board, RedirectAttributes redirectAttributes) {
-		log.info("board modify: " + board);
+		log.info("board modify:{}", board);
 		if (boardService.modify(board)) {
 			redirectAttributes.addFlashAttribute("result", "success");
 		}
@@ -74,7 +74,7 @@ public class BoardController {
 	// 삭제 처리
 	@PostMapping("/remove")
 	public String remove(@RequestParam("boardId") Long boardId, RedirectAttributes redirectAttributes) {
-		log.info("board remove: " + boardId);
+		log.info("board remove:{}", boardId);
 		if (boardService.remove(boardId)) {
 			redirectAttributes.addFlashAttribute("result", "success");
 		}
