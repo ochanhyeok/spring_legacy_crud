@@ -16,7 +16,7 @@ public interface ReplyService {
 	Reply getReply(Long replyId);
 
 	// 댓글 등록
-	void register(Reply reply);
+	Long register(Reply reply);
 
 	// 댓글 수정
 	boolean modify(Reply reply);

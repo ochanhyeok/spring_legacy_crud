@@ -27,8 +27,6 @@ class ReplyMapperTest {
 	private ReplyMapper replyMapper;
 	@Autowired
 	private MemberMapper memberMapper;
-	@Autowired
-	private BoardMapper boardMapper;
 
 	@BeforeEach
 	void setUp() {

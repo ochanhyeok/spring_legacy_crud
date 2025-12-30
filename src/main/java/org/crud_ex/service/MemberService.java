@@ -18,4 +18,7 @@ public interface MemberService {
 
 	// 아이디 중복 체크
 	boolean checkDuplicate(String userId);
+
+	// 로그인
+	Member login(String userId, String userPw);
 }

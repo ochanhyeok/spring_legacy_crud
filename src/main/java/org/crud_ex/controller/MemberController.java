@@ -60,23 +60,18 @@ public class MemberController {
 	@PostMapping("/login")
 	public String login(@RequestParam("userId") String userId, @RequestParam("userPw") String userPw,
 		HttpSession session, RedirectAttributes redirectAttributes) {
-		log.info("member login: " + userId);
-		Member member = memberService.getMember(userId);
+		log.info("로그인 요청: userId={}", userId);
 
-		// 아이디 존재 여부 확인
+		Member member = memberService.login(userId, userPw);
+
 		if (member == null) {
-			redirectAttributes.addFlashAttribute("error", "아이디가 존재하지 않습니다.");
+			redirectAttributes.addFlashAttribute("error", "아이디 또는 비밀번호가 일치하지 않습니다.");
 			return "redirect:/member/login";
 		}
 
-		// 비밀번호 확인
-		if (!member.getUserPw().equals(userPw)) {
-			redirectAttributes.addFlashAttribute("error", "비밀번호가 일치하지 않습니다.");
-			return "redirect:/member/login";
-		}
-
-		// 로그인 성공 - 세션에 저장
 		session.setAttribute("loginUser", member);
+		log.info("로그인 성공, 세션 저장 완료: userId={}", userId);
+
 		return "redirect:/board/list";
 	}
 

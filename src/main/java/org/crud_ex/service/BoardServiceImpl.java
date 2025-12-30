@@ -5,21 +5,25 @@ import java.util.List;
 import org.crud_ex.domain.Board;
 import org.crud_ex.mapper.BoardMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class BoardServiceImpl implements BoardService {
 
 	private final BoardMapper boardMapper;
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<Board> getBoardList() {
 		return boardMapper.findAll();
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public Board getBoard(Long boardId) {
 		return boardMapper.findOne(boardId);
 	}
@@ -40,6 +44,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public int getTotalCount() {
 		return boardMapper.getTotalCount();
 	}
