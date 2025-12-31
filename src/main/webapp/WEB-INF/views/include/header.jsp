@@ -151,6 +151,32 @@
             font-family: inherit;
         }
 
+        /* header.jsp 또는 별도 CSS 파일에 추가 */
+        .search-form {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .search-form select,
+        .search-form input {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .search-form input[type="text"] {
+            flex: 1;
+        }
+
+        .search-result {
+            padding: 10px;
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            margin: 10px 0;
+        }
+
+
         /* 버튼 */
         .btn {
             padding: 10px 20px;

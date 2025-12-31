@@ -85,18 +85,6 @@ public class MemberController {
 		}
 	}
 
-	// 로그아웃
-	@GetMapping("/logout")
-	public String logout(HttpSession session, RedirectAttributes redirectAttributes) {
-		log.info("member logout...");
-		session.invalidate();
-		redirectAttributes.addFlashAttribute("result", "로그아웃되었습니다.");
-
-		return "redirect:/member/login";
-	}
-
-	// 로그아웃 POST 추가
-
 	/**
 	 * GET 방식보다 안전함
 	 * CSRF 공격 방어 (img로딩으로 자동으로 로그아웃 요청 전송)
@@ -108,7 +96,7 @@ public class MemberController {
 		log.info("member logout (POST)...");
 		session.invalidate();
 		redirectAttributes.addFlashAttribute("result", "로그아웃되었습니다.");
-		return "redirect:/member/login";
+		return "redirect:/board/list";
 	}
 
 	// 회원정보 페이지
